@@ -1,0 +1,76 @@
+---
+- name: kafka
+  hosts: master
+  gather_facts: no
+ 
+  vars:
+    ansible_become_pass: "vagrant"
+
+  tasks:
+    - name: Copy .yml files to k8s master
+      copy: 
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: vagrant
+        group: vagrant
+      with_items:
+        - { src: "zookeeper.yml", dest: "/home/vagrant/zookeeper.yml" }
+        - { src: "zookeeper-service.yml", dest: "/home/vagrant/zookeeper-service.yml" }
+        - { src: "kafka-service.yml", dest: "/home/vagrant/kafka-service.yml" }
+        - { src: "kafka-cluster.yml", dest: "/home/vagrant/kafka-cluster.yml" }
+        - { src: "pod-test.yml", dest: "/home/vagrant/pod-test.yml" }
+
+    - name: Run kubectl create --filename zookeeper.yml
+      become: yes
+      shell: "kubectl create --filename zookeeper.yml"
+      environment:
+        KUBECONFIG: /home/vagrant/.kube/config
+      register: create_zookeeper
+
+    - name: Debug create_zookeeper
+      debug: 
+        var: create_zookeeper
+
+    - name: Run kubectl create --filename zookeeper-service.yml
+      become: yes
+      shell: "kubectl create --filename zookeeper-service.yml"
+      environment:
+        KUBECONFIG: /home/vagrant/.kube/config
+      register: create_zookeeper_service
+
+    - name: Debug create_zookeeper_service
+      debug: 
+        var: create_zookeeper_service
+
+    - name: Run kubectl create --filename kafka-service.yml
+      become: yes
+      shell: "kubectl create --filename kafka-service.yml"
+      environment:
+        KUBECONFIG: /home/vagrant/.kube/config
+      register: create_kafka_service
+
+    - name: Debug create_kafka_service
+      debug: 
+        var: create_kafka_service
+
+    - name: Run kubectl create --filename kafka-cluster.yml
+      become: yes
+      shell: "kubectl create --filename kafka-cluster.yml"
+      environment:
+        KUBECONFIG: /home/vagrant/.kube/config
+      register: create_kafka_cluster
+
+    - name: Debug create_kafka_cluster
+      debug: 
+        var: create_kafka_cluster
+
+    - name: Run kubectl create --filename pod-test.yml
+      become: yes
+      shell: "kubectl create --filename pod-test.yml"
+      environment:
+        KUBECONFIG: /home/vagrant/.kube/config
+      register: create_test_pod
+    
+    - name: Debug create_test_pod
+      debug: 
+        var: create_test_pod

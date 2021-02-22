@@ -1,0 +1,2546 @@
+2018-12-04 14:25:11,370 p=14077 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 14:25:11,413 p=14077 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 14:25:13,815 p=14077 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 14:25:14,485 p=14077 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 14:25:14,513 p=14077 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 14:25:17,593 p=14077 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:25:17,598 p=14077 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 14:25:18,568 p=14077 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:25:18,570 p=14077 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 14:25:18,570 p=14077 u=yungshun |  10.236.1.1                 : ok=3    changed=3    unreachable=0    failed=0   
+2018-12-04 14:54:26,733 p=14322 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 14:54:26,753 p=14322 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 14:54:29,021 p=14322 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 14:54:29,603 p=14322 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 14:54:30,384 p=14322 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 14:54:31,064 p=14322 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 14:54:31,070 p=14322 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 14:54:34,483 p=14322 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:54:34,508 p=14322 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 14:54:34,604 p=14322 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.838380", 
+        "end": "2018-12-04 14:54:34.424052", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:54:31.585672", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created\ndeployment.extensions/zookeeper-deployment-2 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created", 
+            "deployment.extensions/zookeeper-deployment-2 created"
+        ]
+    }
+}
+2018-12-04 14:54:34,610 p=14322 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 14:54:35,528 p=14322 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:54:35,532 p=14322 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 14:54:35,638 p=14322 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.462009", 
+        "end": "2018-12-04 14:54:35.466356", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:54:35.004347", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created\nservice/zoo2 created", 
+        "stdout_lines": [
+            "service/zoo1 created", 
+            "service/zoo2 created"
+        ]
+    }
+}
+2018-12-04 14:54:35,645 p=14322 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 14:54:36,453 p=14322 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create --filename kafka-service.yml", "delta": "0:00:00.355821", "end": "2018-12-04 14:54:36.393057", "msg": "non-zero return code", "rc": 1, "start": "2018-12-04 14:54:36.037236", "stderr": "error: error parsing kafka-service.yml: error converting YAML to JSON: yaml: line 12: did not find expected '-' indicator", "stderr_lines": ["error: error parsing kafka-service.yml: error converting YAML to JSON: yaml: line 12: did not find expected '-' indicator"], "stdout": "", "stdout_lines": []}
+2018-12-04 14:54:36,455 p=14322 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-kafka-remote/kafka.retry
+
+2018-12-04 14:54:36,455 p=14322 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 14:54:36,455 p=14322 u=yungshun |  10.236.1.1                 : ok=5    changed=3    unreachable=0    failed=1   
+2018-12-04 14:55:23,388 p=14493 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 14:55:23,399 p=14493 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 14:55:24,306 p=14493 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 14:55:24,886 p=14493 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 14:55:25,686 p=14493 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 14:55:26,279 p=14493 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 14:55:26,285 p=14493 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 14:55:27,220 p=14493 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create --filename zookeeper.yml", "delta": "0:00:00.386508", "end": "2018-12-04 14:55:27.162595", "msg": "non-zero return code", "rc": 1, "start": "2018-12-04 14:55:26.776087", "stderr": "Error from server (AlreadyExists): error when creating \"zookeeper.yml\": deployments.extensions \"zookeeper-deployment-1\" already exists\nError from server (AlreadyExists): error when creating \"zookeeper.yml\": deployments.extensions \"zookeeper-deployment-2\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"zookeeper.yml\": deployments.extensions \"zookeeper-deployment-1\" already exists", "Error from server (AlreadyExists): error when creating \"zookeeper.yml\": deployments.extensions \"zookeeper-deployment-2\" already exists"], "stdout": "", "stdout_lines": []}
+2018-12-04 14:55:27,222 p=14493 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-kafka-remote/kafka.retry
+
+2018-12-04 14:55:27,223 p=14493 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 14:55:27,223 p=14493 u=yungshun |  10.236.1.1                 : ok=1    changed=1    unreachable=0    failed=1   
+2018-12-04 14:56:30,699 p=14607 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 14:56:30,709 p=14607 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 14:56:32,905 p=14607 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 14:56:33,494 p=14607 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 14:56:34,094 p=14607 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 14:56:35,003 p=14607 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 14:56:35,010 p=14607 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 14:56:35,955 p=14607 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:56:35,959 p=14607 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 14:56:36,039 p=14607 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:00.362783", 
+        "end": "2018-12-04 14:56:35.897053", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:56:35.534270", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created\ndeployment.extensions/zookeeper-deployment-2 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created", 
+            "deployment.extensions/zookeeper-deployment-2 created"
+        ]
+    }
+}
+2018-12-04 14:56:36,045 p=14607 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 14:56:36,898 p=14607 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:56:36,902 p=14607 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 14:56:36,981 p=14607 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.425991", 
+        "end": "2018-12-04 14:56:36.841575", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:56:36.415584", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created\nservice/zoo2 created", 
+        "stdout_lines": [
+            "service/zoo1 created", 
+            "service/zoo2 created"
+        ]
+    }
+}
+2018-12-04 14:56:36,987 p=14607 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 14:56:37,817 p=14607 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:56:37,823 p=14607 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-04 14:56:37,904 p=14607 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.403142", 
+        "end": "2018-12-04 14:56:37.758491", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:56:37.355349", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-04 14:56:37,908 p=14607 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-04 14:56:38,742 p=14607 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 14:56:38,748 p=14607 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-04 14:56:38,852 p=14607 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.404697", 
+        "end": "2018-12-04 14:56:38.686049", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 14:56:38.281352", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created\ndeployment.extensions/kafka-broker2 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created", 
+            "deployment.extensions/kafka-broker2 created"
+        ]
+    }
+}
+2018-12-04 14:56:38,854 p=14607 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 14:56:38,854 p=14607 u=yungshun |  10.236.1.1                 : ok=9    changed=4    unreachable=0    failed=0   
+2018-12-04 15:53:35,964 p=15238 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 15:53:35,974 p=15238 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 15:53:38,177 p=15238 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 15:53:38,773 p=15238 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 15:53:39,567 p=15238 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 15:53:40,175 p=15238 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 15:53:40,182 p=15238 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 15:53:43,513 p=15238 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 15:53:43,520 p=15238 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 15:53:43,649 p=15238 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.773636", 
+        "end": "2018-12-04 15:53:43.447062", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 15:53:40.673426", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created\ndeployment.extensions/zookeeper-deployment-2 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created", 
+            "deployment.extensions/zookeeper-deployment-2 created"
+        ]
+    }
+}
+2018-12-04 15:53:43,654 p=15238 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 15:53:44,551 p=15238 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 15:53:44,556 p=15238 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 15:53:44,661 p=15238 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.439420", 
+        "end": "2018-12-04 15:53:44.490821", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 15:53:44.051401", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created\nservice/zoo2 created", 
+        "stdout_lines": [
+            "service/zoo1 created", 
+            "service/zoo2 created"
+        ]
+    }
+}
+2018-12-04 15:53:44,665 p=15238 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 15:53:45,554 p=15238 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 15:53:45,561 p=15238 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-04 15:53:45,664 p=15238 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.440848", 
+        "end": "2018-12-04 15:53:45.491913", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 15:53:45.051065", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-04 15:53:45,670 p=15238 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-04 15:53:46,476 p=15238 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 15:53:46,481 p=15238 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-04 15:53:46,586 p=15238 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.358618", 
+        "end": "2018-12-04 15:53:46.412012", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 15:53:46.053394", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created\ndeployment.extensions/kafka-broker2 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created", 
+            "deployment.extensions/kafka-broker2 created"
+        ]
+    }
+}
+2018-12-04 15:53:46,588 p=15238 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 15:53:46,588 p=15238 u=yungshun |  10.236.1.1                 : ok=9    changed=5    unreachable=0    failed=0   
+2018-12-04 16:34:23,984 p=15569 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 16:34:23,995 p=15569 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 16:34:26,223 p=15569 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 16:34:26,814 p=15569 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 16:34:27,411 p=15569 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 16:34:28,016 p=15569 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 16:34:28,789 p=15569 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-04 16:34:28,797 p=15569 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 16:34:32,095 p=15569 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:34:32,101 p=15569 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 16:34:32,206 p=15569 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.745522", 
+        "end": "2018-12-04 16:34:32.033618", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:34:29.288096", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created\ndeployment.extensions/zookeeper-deployment-2 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created", 
+            "deployment.extensions/zookeeper-deployment-2 created"
+        ]
+    }
+}
+2018-12-04 16:34:32,211 p=15569 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 16:34:33,084 p=15569 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:34:33,090 p=15569 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 16:34:33,193 p=15569 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.441418", 
+        "end": "2018-12-04 16:34:33.027199", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:34:32.585781", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created\nservice/zoo2 created", 
+        "stdout_lines": [
+            "service/zoo1 created", 
+            "service/zoo2 created"
+        ]
+    }
+}
+2018-12-04 16:34:33,198 p=15569 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 16:34:34,048 p=15569 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:34:34,054 p=15569 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-04 16:34:34,157 p=15569 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.395139", 
+        "end": "2018-12-04 16:34:33.989596", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:34:33.594457", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-04 16:34:34,162 p=15569 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-04 16:34:34,965 p=15569 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:34:34,971 p=15569 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-04 16:34:35,074 p=15569 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.357025", 
+        "end": "2018-12-04 16:34:34.907714", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:34:34.550689", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created\ndeployment.extensions/kafka-broker2 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created", 
+            "deployment.extensions/kafka-broker2 created"
+        ]
+    }
+}
+2018-12-04 16:34:35,079 p=15569 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-04 16:34:35,901 p=15569 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:34:35,906 p=15569 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-04 16:34:35,988 p=15569 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.361991", 
+        "end": "2018-12-04 16:34:35.840904", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:34:35.478913", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-04 16:34:35,991 p=15569 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 16:34:35,992 p=15569 u=yungshun |  10.236.1.1                 : ok=11   changed=6    unreachable=0    failed=0   
+2018-12-04 16:57:17,708 p=15869 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 16:57:17,720 p=15869 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 16:57:19,922 p=15869 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 16:57:20,523 p=15869 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 16:57:21,120 p=15869 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 16:57:21,912 p=15869 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 16:57:22,512 p=15869 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-04 16:57:22,520 p=15869 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 16:57:25,973 p=15869 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:57:25,979 p=15869 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 16:57:26,086 p=15869 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.890774", 
+        "end": "2018-12-04 16:57:25.913549", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:57:23.022775", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created\ndeployment.extensions/zookeeper-deployment-2 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created", 
+            "deployment.extensions/zookeeper-deployment-2 created"
+        ]
+    }
+}
+2018-12-04 16:57:26,091 p=15869 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 16:57:27,024 p=15869 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:57:27,029 p=15869 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 16:57:27,138 p=15869 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.483325", 
+        "end": "2018-12-04 16:57:26.965355", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:57:26.482030", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created\nservice/zoo2 created", 
+        "stdout_lines": [
+            "service/zoo1 created", 
+            "service/zoo2 created"
+        ]
+    }
+}
+2018-12-04 16:57:27,144 p=15869 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 16:57:27,987 p=15869 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:57:27,993 p=15869 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-04 16:57:28,098 p=15869 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.410663", 
+        "end": "2018-12-04 16:57:27.928468", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:57:27.517805", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-04 16:57:28,102 p=15869 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-04 16:57:28,889 p=15869 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 16:57:28,895 p=15869 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-04 16:57:28,998 p=15869 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.341172", 
+        "end": "2018-12-04 16:57:28.830677", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 16:57:28.489505", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created\ndeployment.extensions/kafka-broker2 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created", 
+            "deployment.extensions/kafka-broker2 created"
+        ]
+    }
+}
+2018-12-04 16:57:29,002 p=15869 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-04 16:57:29,845 p=15869 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create --filename 400-pod-test.yml", "delta": "0:00:00.379339", "end": "2018-12-04 16:57:29.783364", "msg": "non-zero return code", "rc": 1, "start": "2018-12-04 16:57:29.404025", "stderr": "Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": pods \"kafka-test-client\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": pods \"kafka-test-client\" already exists"], "stdout": "", "stdout_lines": []}
+2018-12-04 16:57:29,847 p=15869 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-kafka-remote/kafka.retry
+
+2018-12-04 16:57:29,847 p=15869 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 16:57:29,847 p=15869 u=yungshun |  10.236.1.1                 : ok=9    changed=5    unreachable=0    failed=1   
+2018-12-04 17:04:18,168 p=16155 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-04 17:04:18,178 p=16155 u=yungshun |  TASK [Copy zookeeper.yml to k8s master] ****************************************
+2018-12-04 17:04:20,458 p=16155 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-04 17:04:21,128 p=16155 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-04 17:04:21,831 p=16155 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-04 17:04:22,527 p=16155 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-04 17:04:23,136 p=16155 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-04 17:04:23,143 p=16155 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-04 17:04:24,073 p=16155 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 17:04:24,078 p=16155 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-04 17:04:24,161 p=16155 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:00.355985", 
+        "end": "2018-12-04 17:04:24.012811", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 17:04:23.656826", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-04 17:04:24,169 p=16155 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-04 17:04:24,967 p=16155 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 17:04:24,972 p=16155 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-04 17:04:25,058 p=16155 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.370581", 
+        "end": "2018-12-04 17:04:24.908747", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 17:04:24.538166", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-04 17:04:25,062 p=16155 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-04 17:04:25,903 p=16155 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 17:04:25,908 p=16155 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-04 17:04:26,013 p=16155 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.405966", 
+        "end": "2018-12-04 17:04:25.844699", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 17:04:25.438733", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-04 17:04:26,018 p=16155 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-04 17:04:26,848 p=16155 u=yungshun |  changed: [10.236.1.1]
+2018-12-04 17:04:26,853 p=16155 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-04 17:04:26,957 p=16155 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.371279", 
+        "end": "2018-12-04 17:04:26.787442", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-04 17:04:26.416163", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-04 17:04:26,962 p=16155 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-04 17:04:27,817 p=16155 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create --filename 400-pod-test.yml", "delta": "0:00:00.379104", "end": "2018-12-04 17:04:27.755383", "msg": "non-zero return code", "rc": 1, "start": "2018-12-04 17:04:27.376279", "stderr": "Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": pods \"kafka-test-client\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": pods \"kafka-test-client\" already exists"], "stdout": "", "stdout_lines": []}
+2018-12-04 17:04:27,819 p=16155 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-kafka-remote/kafka.retry
+
+2018-12-04 17:04:27,819 p=16155 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-04 17:04:27,819 p=16155 u=yungshun |  10.236.1.1                 : ok=9    changed=5    unreachable=0    failed=1   
+2018-12-05 14:36:04,161 p=24012 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 14:36:04,171 p=24012 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 14:36:06,771 p=24012 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 14:36:07,381 p=24012 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 14:36:07,976 p=24012 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 14:36:08,582 p=24012 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 14:36:09,204 p=24012 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 14:36:09,219 p=24012 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 14:36:12,338 p=24012 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:36:12,345 p=24012 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 14:36:12,475 p=24012 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.476214", 
+        "end": "2018-12-05 14:36:12.288061", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:36:09.811847", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 14:36:12,483 p=24012 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 14:36:13,337 p=24012 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:36:13,343 p=24012 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 14:36:13,449 p=24012 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.394682", 
+        "end": "2018-12-05 14:36:13.288494", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:36:12.893812", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 14:36:13,455 p=24012 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 14:36:14,285 p=24012 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:36:14,291 p=24012 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 14:36:14,397 p=24012 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.368398", 
+        "end": "2018-12-05 14:36:14.236662", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:36:13.868264", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 14:36:14,402 p=24012 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 14:36:15,198 p=24012 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:36:15,203 p=24012 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 14:36:15,310 p=24012 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.341119", 
+        "end": "2018-12-05 14:36:15.149578", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:36:14.808459", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 14:36:15,316 p=24012 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 14:36:16,126 p=24012 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:36:16,132 p=24012 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-05 14:36:16,223 p=24012 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.343649", 
+        "end": "2018-12-05 14:36:16.072884", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:36:15.729235", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-05 14:36:16,225 p=24012 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 14:36:16,225 p=24012 u=yungshun |  10.236.1.1                 : ok=11   changed=5    unreachable=0    failed=0   
+2018-12-05 14:52:22,161 p=24404 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 14:52:22,171 p=24404 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 14:52:24,454 p=24404 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 14:52:25,048 p=24404 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 14:52:25,638 p=24404 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 14:52:26,458 p=24404 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 14:52:27,058 p=24404 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 14:52:27,064 p=24404 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 14:52:30,221 p=24404 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:52:30,228 p=24404 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 14:52:30,351 p=24404 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.590931", 
+        "end": "2018-12-05 14:52:30.164830", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:52:27.573899", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 14:52:30,357 p=24404 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 14:52:31,226 p=24404 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:52:31,230 p=24404 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 14:52:31,338 p=24404 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.384813", 
+        "end": "2018-12-05 14:52:31.171609", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:52:30.786796", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 14:52:31,344 p=24404 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 14:52:32,197 p=24404 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:52:32,206 p=24404 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 14:52:32,323 p=24404 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.397483", 
+        "end": "2018-12-05 14:52:32.136602", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:52:31.739119", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 14:52:32,329 p=24404 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 14:52:33,158 p=24404 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:52:33,164 p=24404 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 14:52:33,271 p=24404 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.368835", 
+        "end": "2018-12-05 14:52:33.103782", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:52:32.734947", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 14:52:33,276 p=24404 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 14:52:34,091 p=24404 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:52:34,095 p=24404 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-05 14:52:34,180 p=24404 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.351682", 
+        "end": "2018-12-05 14:52:34.033892", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:52:33.682210", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-05 14:52:34,182 p=24404 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 14:52:34,183 p=24404 u=yungshun |  10.236.1.1                 : ok=11   changed=6    unreachable=0    failed=0   
+2018-12-05 14:57:53,545 p=24649 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 14:57:53,557 p=24649 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 14:57:55,778 p=24649 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 14:57:56,371 p=24649 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 14:57:56,970 p=24649 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 14:57:57,772 p=24649 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 14:57:58,372 p=24649 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 14:57:58,378 p=24649 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 14:57:59,306 p=24649 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:57:59,312 p=24649 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 14:57:59,396 p=24649 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:00.337814", 
+        "end": "2018-12-05 14:57:59.252681", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:57:58.914867", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 14:57:59,412 p=24649 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 14:58:00,245 p=24649 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:58:00,251 p=24649 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 14:58:00,336 p=24649 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.410831", 
+        "end": "2018-12-05 14:58:00.192074", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:57:59.781243", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 14:58:00,342 p=24649 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 14:58:01,189 p=24649 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:58:01,198 p=24649 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 14:58:01,307 p=24649 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.418310", 
+        "end": "2018-12-05 14:58:01.129997", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:58:00.711687", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 14:58:01,313 p=24649 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 14:58:02,142 p=24649 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:58:02,147 p=24649 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 14:58:02,257 p=24649 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.368634", 
+        "end": "2018-12-05 14:58:02.087005", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:58:01.718371", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 14:58:02,262 p=24649 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 14:58:03,079 p=24649 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 14:58:03,084 p=24649 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-05 14:58:03,190 p=24649 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.347237", 
+        "end": "2018-12-05 14:58:03.024703", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 14:58:02.677466", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-05 14:58:03,193 p=24649 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 14:58:03,193 p=24649 u=yungshun |  10.236.1.1                 : ok=11   changed=6    unreachable=0    failed=0   
+2018-12-05 15:10:06,409 p=24957 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 15:10:06,421 p=24957 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 15:10:08,653 p=24957 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 15:10:09,247 p=24957 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 15:10:09,843 p=24957 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 15:10:10,648 p=24957 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 15:10:11,247 p=24957 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 15:10:11,254 p=24957 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 15:10:14,283 p=24957 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:10:14,289 p=24957 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 15:10:14,398 p=24957 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.461472", 
+        "end": "2018-12-05 15:10:14.228417", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:10:11.766945", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 15:10:14,403 p=24957 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 15:10:15,264 p=24957 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:10:15,270 p=24957 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 15:10:15,379 p=24957 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.399371", 
+        "end": "2018-12-05 15:10:15.208957", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:10:14.809586", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 15:10:15,384 p=24957 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 15:10:16,230 p=24957 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:10:16,236 p=24957 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 15:10:16,344 p=24957 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.392094", 
+        "end": "2018-12-05 15:10:16.175742", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:10:15.783648", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 15:10:16,348 p=24957 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 15:10:17,150 p=24957 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:10:17,156 p=24957 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 15:10:17,264 p=24957 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.332452", 
+        "end": "2018-12-05 15:10:17.094388", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:10:16.761936", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 15:10:17,269 p=24957 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 15:10:18,082 p=24957 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:10:18,088 p=24957 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-05 15:10:18,174 p=24957 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.347184", 
+        "end": "2018-12-05 15:10:18.028873", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:10:17.681689", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-05 15:10:18,175 p=24957 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 15:10:18,176 p=24957 u=yungshun |  10.236.1.1                 : ok=11   changed=6    unreachable=0    failed=0   
+2018-12-05 15:19:45,961 p=25262 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 15:19:45,973 p=25262 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 15:19:48,171 p=25262 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 15:19:48,772 p=25262 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 15:19:49,373 p=25262 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 15:19:50,177 p=25262 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 15:19:50,780 p=25262 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 15:19:50,787 p=25262 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 15:19:51,717 p=25262 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:19:51,722 p=25262 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 15:19:51,809 p=25262 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:00.364240", 
+        "end": "2018-12-05 15:19:51.657777", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:19:51.293537", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 15:19:51,823 p=25262 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 15:19:52,615 p=25262 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:19:52,637 p=25262 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 15:19:52,717 p=25262 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.370295", 
+        "end": "2018-12-05 15:19:52.557990", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:19:52.187695", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 15:19:52,721 p=25262 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 15:19:53,548 p=25262 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:19:53,553 p=25262 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 15:19:53,683 p=25262 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.392736", 
+        "end": "2018-12-05 15:19:53.490226", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:19:53.097490", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 15:19:53,689 p=25262 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 15:19:54,529 p=25262 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:19:54,534 p=25262 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 15:19:54,655 p=25262 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.382545", 
+        "end": "2018-12-05 15:19:54.471322", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:19:54.088777", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 15:19:54,660 p=25262 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 15:19:55,461 p=25262 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create --filename 400-pod-test.yml", "delta": "0:00:00.342611", "end": "2018-12-05 15:19:55.406220", "msg": "non-zero return code", "rc": 1, "start": "2018-12-05 15:19:55.063609", "stderr": "Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": object is being deleted: pods \"kafka-test-client\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"400-pod-test.yml\": object is being deleted: pods \"kafka-test-client\" already exists"], "stdout": "", "stdout_lines": []}
+2018-12-05 15:19:55,463 p=25262 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-kafka-remote/k8s-kafka.retry
+
+2018-12-05 15:19:55,464 p=25262 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 15:19:55,464 p=25262 u=yungshun |  10.236.1.1                 : ok=9    changed=5    unreachable=0    failed=1   
+2018-12-05 15:22:18,402 p=25476 u=yungshun |  PLAY [kafka] *******************************************************************
+2018-12-05 15:22:18,412 p=25476 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 15:22:20,611 p=25476 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper.yml', u'src': u'zookeeper.yml'})
+2018-12-05 15:22:21,201 p=25476 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/zookeeper-service.yml', u'src': u'zookeeper-service.yml'})
+2018-12-05 15:22:21,789 p=25476 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-service.yml', u'src': u'kafka-service.yml'})
+2018-12-05 15:22:22,386 p=25476 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/kafka-cluster.yml', u'src': u'kafka-cluster.yml'})
+2018-12-05 15:22:22,990 p=25476 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/400-pod-test.yml', u'src': u'400-pod-test.yml'})
+2018-12-05 15:22:22,998 p=25476 u=yungshun |  TASK [Run kubectl create --filename zookeeper.yml] *****************************
+2018-12-05 15:22:25,973 p=25476 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:22:25,979 p=25476 u=yungshun |  TASK [Debug create_zookeeper] **************************************************
+2018-12-05 15:22:26,108 p=25476 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper.yml", 
+        "delta": "0:00:02.393223", 
+        "end": "2018-12-05 15:22:25.912021", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:22:23.518798", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/zookeeper-deployment-1 created", 
+        "stdout_lines": [
+            "deployment.extensions/zookeeper-deployment-1 created"
+        ]
+    }
+}
+2018-12-05 15:22:26,114 p=25476 u=yungshun |  TASK [Run kubectl create --filename zookeeper-service.yml] *********************
+2018-12-05 15:22:27,012 p=25476 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:22:27,018 p=25476 u=yungshun |  TASK [Debug create_zookeeper_service] ******************************************
+2018-12-05 15:22:27,125 p=25476 u=yungshun |  ok: [10.236.1.1] => {
+    "create_zookeeper_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename zookeeper-service.yml", 
+        "delta": "0:00:00.439479", 
+        "end": "2018-12-05 15:22:26.954109", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:22:26.514630", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/zoo1 created", 
+        "stdout_lines": [
+            "service/zoo1 created"
+        ]
+    }
+}
+2018-12-05 15:22:27,130 p=25476 u=yungshun |  TASK [Run kubectl create --filename kafka-service.yml] *************************
+2018-12-05 15:22:27,996 p=25476 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:22:28,002 p=25476 u=yungshun |  TASK [Debug create_kafka_service] **********************************************
+2018-12-05 15:22:28,110 p=25476 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_service": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-service.yml", 
+        "delta": "0:00:00.391866", 
+        "end": "2018-12-05 15:22:27.941959", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:22:27.550093", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/kafka-service created", 
+        "stdout_lines": [
+            "service/kafka-service created"
+        ]
+    }
+}
+2018-12-05 15:22:28,115 p=25476 u=yungshun |  TASK [Run kubectl create --filename kafka-cluster.yml] *************************
+2018-12-05 15:22:28,897 p=25476 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:22:28,902 p=25476 u=yungshun |  TASK [Debug create_kafka_cluster] **********************************************
+2018-12-05 15:22:29,007 p=25476 u=yungshun |  ok: [10.236.1.1] => {
+    "create_kafka_cluster": {
+        "changed": true, 
+        "cmd": "kubectl create --filename kafka-cluster.yml", 
+        "delta": "0:00:00.324174", 
+        "end": "2018-12-05 15:22:28.839572", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:22:28.515398", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/kafka-broker1 created", 
+        "stdout_lines": [
+            "deployment.extensions/kafka-broker1 created"
+        ]
+    }
+}
+2018-12-05 15:22:29,013 p=25476 u=yungshun |  TASK [Run kubectl create --filename 400-pod-test.yml] **************************
+2018-12-05 15:22:29,828 p=25476 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 15:22:29,832 p=25476 u=yungshun |  TASK [Debug create_test_pod] ***************************************************
+2018-12-05 15:22:29,916 p=25476 u=yungshun |  ok: [10.236.1.1] => {
+    "create_test_pod": {
+        "changed": true, 
+        "cmd": "kubectl create --filename 400-pod-test.yml", 
+        "delta": "0:00:00.331498", 
+        "end": "2018-12-05 15:22:29.748532", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 15:22:29.417034", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "pod/kafka-test-client created", 
+        "stdout_lines": [
+            "pod/kafka-test-client created"
+        ]
+    }
+}
+2018-12-05 15:22:29,918 p=25476 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 15:22:29,918 p=25476 u=yungshun |  10.236.1.1                 : ok=11   changed=5    unreachable=0    failed=0   
+2018-12-05 16:01:38,166 p=26248 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 16:01:38,176 p=26248 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 16:02:01,668 p=26248 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 16:02:01,696 p=26248 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 16:02:01,907 p=26248 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/ccma/spark-2.3.1-bin-hadoop2.7.tgz' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2018-12-05 16:02:01,909 p=26248 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-spark-remote/k8s-spark.retry
+
+2018-12-05 16:02:01,909 p=26248 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 16:02:01,909 p=26248 u=yungshun |  10.236.1.1                 : ok=1    changed=1    unreachable=0    failed=1   
+2018-12-05 16:04:11,547 p=26343 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 16:04:11,557 p=26343 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 16:04:13,492 p=26343 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:04:13,497 p=26343 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 16:04:23,841 p=26343 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:04:23,845 p=26343 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 16:04:24,407 p=26343 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:04:24,414 p=26343 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 16:04:25,002 p=26343 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:04:25,007 p=26343 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 16:04:25,095 p=26343 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 16:04:25,104 p=26343 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 16:04:25,530 p=26343 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:04:25,535 p=26343 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 16:04:25,618 p=26343 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 16:04:25,622 p=26343 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 16:04:26,087 p=26343 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 16:04:26,089 p=26343 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 16:04:26,089 p=26343 u=yungshun |  10.236.1.1                 : ok=8    changed=1    unreachable=0    failed=0   
+2018-12-05 16:30:37,875 p=26652 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 16:30:37,905 p=26652 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 16:31:00,531 p=26652 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 16:31:00,536 p=26652 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 16:31:05,031 p=26652 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:31:05,036 p=26652 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 16:31:05,691 p=26652 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:31:05,696 p=26652 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 16:31:06,426 p=26652 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:31:06,431 p=26652 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 16:31:06,515 p=26652 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 16:31:06,520 p=26652 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 16:31:06,940 p=26652 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 16:31:06,945 p=26652 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 16:31:07,029 p=26652 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 16:31:07,034 p=26652 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 16:31:08,040 p=26652 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 16:31:08,044 p=26652 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 16:31:10,483 p=26652 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 16:31:10,488 p=26652 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 16:31:10,582 p=26652 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r ccma -t latest build", 
+        "delta": "0:00:01.804426", 
+        "end": "2018-12-05 16:31:10.433554", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 16:31:08.629128", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 16:31:10,589 p=26652 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 16:31:10,589 p=26652 u=yungshun |  10.236.1.1                 : ok=10   changed=3    unreachable=0    failed=0   
+2018-12-05 17:00:36,989 p=27378 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:00:37,000 p=27378 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:00:39,261 p=27378 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:00:39,932 p=27378 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:00:40,605 p=27378 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:00:41,282 p=27378 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:00:41,289 p=27378 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:01:02,409 p=27378 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:01:02,414 p=27378 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:01:07,242 p=27378 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:01:07,246 p=27378 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:01:07,999 p=27378 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:01:08,008 p=27378 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:01:08,683 p=27378 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:01:08,689 p=27378 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:01:08,770 p=27378 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:01:08,776 p=27378 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:01:09,195 p=27378 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:01:09,201 p=27378 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:01:09,285 p=27378 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:01:09,294 p=27378 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:01:09,749 p=27378 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:01:09,754 p=27378 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:01:12,380 p=27378 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:01:12,386 p=27378 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:01:12,472 p=27378 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r ccma -t latest build", 
+        "delta": "0:00:01.790498", 
+        "end": "2018-12-05 17:01:12.328850", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:01:10.538352", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:01:12,478 p=27378 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:01:15,123 p=27378 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:01:15,131 p=27378 u=yungshun |  TASK [Debug create_nginx] ******************************************************
+2018-12-05 17:01:15,227 p=27378 u=yungshun |  ok: [10.236.1.1] => {
+    "create_nginx": {
+        "changed": true, 
+        "cmd": "kubectl create -f nginx.yml", 
+        "delta": "0:00:02.205161", 
+        "end": "2018-12-05 17:01:15.065404", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:01:12.860243", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/nginx-deployment created", 
+        "stdout_lines": [
+            "deployment.extensions/nginx-deployment created"
+        ]
+    }
+}
+2018-12-05 17:01:15,236 p=27378 u=yungshun |  TASK [Create an spark-master deployment] ***************************************
+2018-12-05 17:01:17,840 p=27378 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create -f spark-master.yml", "delta": "0:00:02.161990", "end": "2018-12-05 17:01:17.780465", "msg": "non-zero return code", "rc": 1, "start": "2018-12-05 17:01:15.618475", "stderr": "error: unable to recognize \"spark-master.yml\": no matches for kind \"Deployment\" in version \"v1\"", "stderr_lines": ["error: unable to recognize \"spark-master.yml\": no matches for kind \"Deployment\" in version \"v1\""], "stdout": "", "stdout_lines": []}
+2018-12-05 17:01:17,845 p=27378 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-spark-remote/k8s-spark.retry
+
+2018-12-05 17:01:17,845 p=27378 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:01:17,845 p=27378 u=yungshun |  10.236.1.1                 : ok=13   changed=5    unreachable=0    failed=1   
+2018-12-05 17:01:58,699 p=27682 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:01:58,711 p=27682 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:01:59,628 p=27682 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:02:00,443 p=27682 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:02:01,051 p=27682 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:02:01,643 p=27682 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:02:01,650 p=27682 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:02:23,254 p=27682 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:02:23,259 p=27682 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:02:27,600 p=27682 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:02:27,605 p=27682 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:02:28,034 p=27682 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:02:28,038 p=27682 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:02:28,616 p=27682 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:02:28,621 p=27682 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:02:28,708 p=27682 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:02:28,718 p=27682 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:02:29,128 p=27682 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:02:29,133 p=27682 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:02:29,217 p=27682 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:02:29,223 p=27682 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:02:29,690 p=27682 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:02:29,694 p=27682 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:02:32,097 p=27682 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:02:32,103 p=27682 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:02:32,191 p=27682 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r ccma -t latest build", 
+        "delta": "0:00:01.838756", 
+        "end": "2018-12-05 17:02:32.044619", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:02:30.205863", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:02:32,195 p=27682 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:02:34,832 p=27682 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create -f nginx.yml", "delta": "0:00:02.217742", "end": "2018-12-05 17:02:34.781264", "msg": "non-zero return code", "rc": 1, "start": "2018-12-05 17:02:32.563522", "stderr": "Error from server (AlreadyExists): error when creating \"nginx.yml\": deployments.extensions \"nginx-deployment\" already exists", "stderr_lines": ["Error from server (AlreadyExists): error when creating \"nginx.yml\": deployments.extensions \"nginx-deployment\" already exists"], "stdout": "", "stdout_lines": []}
+2018-12-05 17:02:34,834 p=27682 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-spark-remote/k8s-spark.retry
+
+2018-12-05 17:02:34,834 p=27682 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:02:34,834 p=27682 u=yungshun |  10.236.1.1                 : ok=11   changed=4    unreachable=0    failed=1   
+2018-12-05 17:03:49,399 p=27924 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:03:49,411 p=27924 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:03:51,644 p=27924 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:03:52,235 p=27924 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:03:52,831 p=27924 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:03:53,430 p=27924 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:03:53,441 p=27924 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:04:17,146 p=27924 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:04:17,151 p=27924 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:04:21,526 p=27924 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:04:21,531 p=27924 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:04:21,962 p=27924 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:04:21,967 p=27924 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:04:22,832 p=27924 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:04:22,838 p=27924 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:04:22,922 p=27924 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:04:22,926 p=27924 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:04:23,344 p=27924 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:04:23,349 p=27924 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:04:23,432 p=27924 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:04:23,437 p=27924 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:04:23,885 p=27924 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:04:23,890 p=27924 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:04:26,217 p=27924 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:04:26,223 p=27924 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:04:26,308 p=27924 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r ccma -t latest build", 
+        "delta": "0:00:01.769261", 
+        "end": "2018-12-05 17:04:26.167085", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:04:24.397824", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:04:26,314 p=27924 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:04:29,117 p=27924 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:04:29,122 p=27924 u=yungshun |  TASK [Debug create_nginx] ******************************************************
+2018-12-05 17:04:29,206 p=27924 u=yungshun |  ok: [10.236.1.1] => {
+    "create_nginx": {
+        "changed": true, 
+        "cmd": "kubectl create -f nginx.yml", 
+        "delta": "0:00:02.384940", 
+        "end": "2018-12-05 17:04:29.062930", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:04:26.677990", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/nginx-deployment created", 
+        "stdout_lines": [
+            "deployment.extensions/nginx-deployment created"
+        ]
+    }
+}
+2018-12-05 17:04:29,212 p=27924 u=yungshun |  TASK [Create an spark-master deployment] ***************************************
+2018-12-05 17:04:31,812 p=27924 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:04:31,817 p=27924 u=yungshun |  TASK [Debug create_spark_master] ***********************************************
+2018-12-05 17:04:31,899 p=27924 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master.yml", 
+        "delta": "0:00:02.182903", 
+        "end": "2018-12-05 17:04:31.761211", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:04:29.578308", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-master created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:04:31,905 p=27924 u=yungshun |  TASK [Create an spark-master service] ******************************************
+2018-12-05 17:04:34,521 p=27924 u=yungshun |  fatal: [10.236.1.1]: FAILED! => {"changed": true, "cmd": "kubectl create -f spark-master-service.yml", "delta": "0:00:02.192863", "end": "2018-12-05 17:04:34.466964", "msg": "non-zero return code", "rc": 1, "start": "2018-12-05 17:04:32.274101", "stderr": "Error from server (BadRequest): error when creating \"spark-master-service.yml\": service in version \"v1\" cannot be handled as a Service: no kind \"service\" is registered for version \"v1\" in scheme \"k8s.io/kubernetes/pkg/api/legacyscheme/scheme.go:29\"", "stderr_lines": ["Error from server (BadRequest): error when creating \"spark-master-service.yml\": service in version \"v1\" cannot be handled as a Service: no kind \"service\" is registered for version \"v1\" in scheme \"k8s.io/kubernetes/pkg/api/legacyscheme/scheme.go:29\""], "stdout": "", "stdout_lines": []}
+2018-12-05 17:04:34,524 p=27924 u=yungshun |  	to retry, use: --limit @/home/yungshun/workspace/ansible/ansible-k8s-spark-remote/k8s-spark.retry
+
+2018-12-05 17:04:34,524 p=27924 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:04:34,524 p=27924 u=yungshun |  10.236.1.1                 : ok=15   changed=5    unreachable=0    failed=1   
+2018-12-05 17:06:16,164 p=28216 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:06:16,177 p=28216 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:06:18,664 p=28216 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:06:19,252 p=28216 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:06:20,053 p=28216 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:06:20,668 p=28216 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:06:20,675 p=28216 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:06:42,195 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:06:42,200 p=28216 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:06:46,519 p=28216 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:06:46,524 p=28216 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:06:46,960 p=28216 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:06:46,964 p=28216 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:06:47,546 p=28216 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:06:47,551 p=28216 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:06:47,640 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:06:47,652 p=28216 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:06:48,057 p=28216 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:06:48,063 p=28216 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:06:48,146 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:06:48,151 p=28216 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:06:48,623 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:06:48,628 p=28216 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:06:50,990 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:06:50,995 p=28216 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:06:51,081 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r ccma -t latest build", 
+        "delta": "0:00:01.798232", 
+        "end": "2018-12-05 17:06:50.934813", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:06:49.136581", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:06:51,087 p=28216 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:06:53,673 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:06:53,679 p=28216 u=yungshun |  TASK [Debug create_nginx] ******************************************************
+2018-12-05 17:06:53,763 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "create_nginx": {
+        "changed": true, 
+        "cmd": "kubectl create -f nginx.yml", 
+        "delta": "0:00:02.156436", 
+        "end": "2018-12-05 17:06:53.609125", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:06:51.452689", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/nginx-deployment created", 
+        "stdout_lines": [
+            "deployment.extensions/nginx-deployment created"
+        ]
+    }
+}
+2018-12-05 17:06:53,769 p=28216 u=yungshun |  TASK [Create an spark-master deployment] ***************************************
+2018-12-05 17:06:57,213 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:06:57,218 p=28216 u=yungshun |  TASK [Debug create_spark_master] ***********************************************
+2018-12-05 17:06:57,309 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master.yml", 
+        "delta": "0:00:03.031916", 
+        "end": "2018-12-05 17:06:57.160068", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:06:54.128152", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-master created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:06:57,316 p=28216 u=yungshun |  TASK [Create an spark-master service] ******************************************
+2018-12-05 17:07:00,102 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:07:00,118 p=28216 u=yungshun |  TASK [Debug create_spark_master_svc] *******************************************
+2018-12-05 17:07:00,203 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master_svc": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master-service.yml", 
+        "delta": "0:00:02.347419", 
+        "end": "2018-12-05 17:07:00.048694", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:06:57.701275", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/spark-master created", 
+        "stdout_lines": [
+            "service/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:07:00,208 p=28216 u=yungshun |  TASK [Create an spark-worker deployment] ***************************************
+2018-12-05 17:07:02,825 p=28216 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:07:02,830 p=28216 u=yungshun |  TASK [Debug create_spark_worker] ***********************************************
+2018-12-05 17:07:02,912 p=28216 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_worker": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-worker.yml", 
+        "delta": "0:00:02.196633", 
+        "end": "2018-12-05 17:07:02.770373", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:07:00.573740", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-worker created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-worker created"
+        ]
+    }
+}
+2018-12-05 17:07:02,915 p=28216 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:07:02,915 p=28216 u=yungshun |  10.236.1.1                 : ok=19   changed=8    unreachable=0    failed=0   
+2018-12-05 17:32:05,977 p=28643 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:32:05,989 p=28643 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:32:08,807 p=28643 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:32:09,944 p=28643 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:32:10,537 p=28643 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:32:11,217 p=28643 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:32:11,224 p=28643 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:32:32,587 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:32,593 p=28643 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:32:37,043 p=28643 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:32:37,047 p=28643 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:32:37,487 p=28643 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:32:37,492 p=28643 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:32:38,061 p=28643 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:32:38,067 p=28643 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:32:38,152 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:32:38,157 p=28643 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:32:38,577 p=28643 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:32:38,582 p=28643 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:32:38,675 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:32:38,683 p=28643 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:32:39,152 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:39,156 p=28643 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:32:41,483 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:41,487 p=28643 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:32:41,575 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r yungshun317 -t latest build", 
+        "delta": "0:00:01.760858", 
+        "end": "2018-12-05 17:32:41.430298", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:39.669440", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:32:41,581 p=28643 u=yungshun |  TASK [Log into DockerHub] ******************************************************
+2018-12-05 17:32:42,548 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:42,552 p=28643 u=yungshun |  TASK [Push Spark Docker image using docker-image-tool.sh] **********************
+2018-12-05 17:32:49,954 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:49,960 p=28643 u=yungshun |  TASK [Debug push_spark_image] **************************************************
+2018-12-05 17:32:50,045 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "push_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r yungshun317 -t latest push", 
+        "delta": "0:00:06.979159", 
+        "end": "2018-12-05 17:32:49.902095", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:42.922936", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "The push refers to a repository [docker.io/yungshun317/spark]\n0017145f5960: Preparing\n55cc5be1acc1: Preparing\n4d6f27f7b604: Preparing\n41492c9f788d: Preparing\nf3ad8043c52a: Preparing\n7a2253586749: Preparing\n7ce64cc46444: Preparing\n320bbd3a0bd1: Preparing\ned6f0bd39121: Preparing\n0c3170905795: Preparing\ndf64d3292fd6: Preparing\n7a2253586749: Waiting\n7ce64cc46444: Waiting\n320bbd3a0bd1: Waiting\ned6f0bd39121: Waiting\n0c3170905795: Waiting\ndf64d3292fd6: Waiting\n0017145f5960: Layer already exists\n55cc5be1acc1: Layer already exists\n4d6f27f7b604: Layer already exists\n41492c9f788d: Layer already exists\nf3ad8043c52a: Layer already exists\n7a2253586749: Layer already exists\ned6f0bd39121: Layer already exists\n320bbd3a0bd1: Layer already exists\n0c3170905795: Layer already exists\n7ce64cc46444: Layer already exists\ndf64d3292fd6: Layer already exists\nlatest: digest: sha256:5e7c40f503b0383b0324dbab759f05966294356decaeecf55909e3e50256a6e9 size: 2624", 
+        "stdout_lines": [
+            "The push refers to a repository [docker.io/yungshun317/spark]", 
+            "0017145f5960: Preparing", 
+            "55cc5be1acc1: Preparing", 
+            "4d6f27f7b604: Preparing", 
+            "41492c9f788d: Preparing", 
+            "f3ad8043c52a: Preparing", 
+            "7a2253586749: Preparing", 
+            "7ce64cc46444: Preparing", 
+            "320bbd3a0bd1: Preparing", 
+            "ed6f0bd39121: Preparing", 
+            "0c3170905795: Preparing", 
+            "df64d3292fd6: Preparing", 
+            "7a2253586749: Waiting", 
+            "7ce64cc46444: Waiting", 
+            "320bbd3a0bd1: Waiting", 
+            "ed6f0bd39121: Waiting", 
+            "0c3170905795: Waiting", 
+            "df64d3292fd6: Waiting", 
+            "0017145f5960: Layer already exists", 
+            "55cc5be1acc1: Layer already exists", 
+            "4d6f27f7b604: Layer already exists", 
+            "41492c9f788d: Layer already exists", 
+            "f3ad8043c52a: Layer already exists", 
+            "7a2253586749: Layer already exists", 
+            "ed6f0bd39121: Layer already exists", 
+            "320bbd3a0bd1: Layer already exists", 
+            "0c3170905795: Layer already exists", 
+            "7ce64cc46444: Layer already exists", 
+            "df64d3292fd6: Layer already exists", 
+            "latest: digest: sha256:5e7c40f503b0383b0324dbab759f05966294356decaeecf55909e3e50256a6e9 size: 2624"
+        ]
+    }
+}
+2018-12-05 17:32:50,051 p=28643 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:32:52,549 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:52,555 p=28643 u=yungshun |  TASK [Debug create_nginx] ******************************************************
+2018-12-05 17:32:52,640 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "create_nginx": {
+        "changed": true, 
+        "cmd": "kubectl create -f nginx.yml", 
+        "delta": "0:00:02.080756", 
+        "end": "2018-12-05 17:32:52.497888", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:50.417132", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/nginx-deployment created", 
+        "stdout_lines": [
+            "deployment.extensions/nginx-deployment created"
+        ]
+    }
+}
+2018-12-05 17:32:52,647 p=28643 u=yungshun |  TASK [Create a spark-master deployment] ****************************************
+2018-12-05 17:32:55,221 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:55,226 p=28643 u=yungshun |  TASK [Debug create_spark_master] ***********************************************
+2018-12-05 17:32:55,311 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master.yml", 
+        "delta": "0:00:02.153384", 
+        "end": "2018-12-05 17:32:55.171345", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:53.017961", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-master created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:32:55,316 p=28643 u=yungshun |  TASK [Create a spark-master service] *******************************************
+2018-12-05 17:32:57,964 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:32:57,970 p=28643 u=yungshun |  TASK [Debug create_spark_master_svc] *******************************************
+2018-12-05 17:32:58,054 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master_svc": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master-service.yml", 
+        "delta": "0:00:02.223730", 
+        "end": "2018-12-05 17:32:57.916414", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:55.692684", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/spark-master created", 
+        "stdout_lines": [
+            "service/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:32:58,059 p=28643 u=yungshun |  TASK [Create a spark-worker deployment] ****************************************
+2018-12-05 17:33:00,637 p=28643 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:33:00,642 p=28643 u=yungshun |  TASK [Debug create_spark_worker] ***********************************************
+2018-12-05 17:33:00,727 p=28643 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_worker": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-worker.yml", 
+        "delta": "0:00:02.151255", 
+        "end": "2018-12-05 17:33:00.587656", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:32:58.436401", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-worker created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-worker created"
+        ]
+    }
+}
+2018-12-05 17:33:00,730 p=28643 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:33:00,730 p=28643 u=yungshun |  10.236.1.1                 : ok=22   changed=10   unreachable=0    failed=0   
+2018-12-05 17:43:32,760 p=29051 u=yungshun |  PLAY [spark] *******************************************************************
+2018-12-05 17:43:32,772 p=29051 u=yungshun |  TASK [Copy .yml files to k8s master] *******************************************
+2018-12-05 17:43:35,006 p=29051 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/nginx.yml', u'src': u'nginx.yml'})
+2018-12-05 17:43:35,791 p=29051 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master.yml', u'src': u'spark-master.yml'})
+2018-12-05 17:43:36,396 p=29051 u=yungshun |  ok: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-master-service.yml', u'src': u'spark-master-service.yml'})
+2018-12-05 17:43:37,388 p=29051 u=yungshun |  changed: [10.236.1.1] => (item={u'dest': u'/home/ccma/spark-worker.yml', u'src': u'spark-worker.yml'})
+2018-12-05 17:43:37,394 p=29051 u=yungshun |  TASK [Download Spark binary file] **********************************************
+2018-12-05 17:43:59,571 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:43:59,576 p=29051 u=yungshun |  TASK [Extract Spark file] ******************************************************
+2018-12-05 17:44:04,094 p=29051 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:44:04,098 p=29051 u=yungshun |  TASK [Add Spark symlink] *******************************************************
+2018-12-05 17:44:04,542 p=29051 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:44:04,547 p=29051 u=yungshun |  TASK [Set Spark Home] **********************************************************
+2018-12-05 17:44:05,113 p=29051 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:44:05,118 p=29051 u=yungshun |  TASK [Debug spark_home] ********************************************************
+2018-12-05 17:44:05,201 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_home": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/etc/environment (content)", 
+                "before": "", 
+                "before_header": "/etc/environment (content)"
+            }, 
+            {
+                "after_header": "/etc/environment (file attributes)", 
+                "before_header": "/etc/environment (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:44:05,207 p=29051 u=yungshun |  TASK [Set Spark Path] **********************************************************
+2018-12-05 17:44:05,620 p=29051 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:44:05,626 p=29051 u=yungshun |  TASK [Debug spark_path] ********************************************************
+2018-12-05 17:44:05,710 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "spark_path": {
+        "backup": "", 
+        "changed": false, 
+        "diff": [
+            {
+                "after": "", 
+                "after_header": "/home/ccma/.bashrc (content)", 
+                "before": "", 
+                "before_header": "/home/ccma/.bashrc (content)"
+            }, 
+            {
+                "after_header": "/home/ccma/.bashrc (file attributes)", 
+                "before_header": "/home/ccma/.bashrc (file attributes)"
+            }
+        ], 
+        "failed": false, 
+        "msg": ""
+    }
+}
+2018-12-05 17:44:05,716 p=29051 u=yungshun |  TASK [Clean downloaded package] ************************************************
+2018-12-05 17:44:06,170 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:06,176 p=29051 u=yungshun |  TASK [Build Spark Docker image using docker-image-tool.sh] *********************
+2018-12-05 17:44:08,481 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:08,487 p=29051 u=yungshun |  TASK [Debug build_spark_image] *************************************************
+2018-12-05 17:44:08,573 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "build_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r yungshun317 -t latest build", 
+        "delta": "0:00:01.758622", 
+        "end": "2018-12-05 17:44:08.436187", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:06.677565", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "Sending build context to Docker daemon 256.5 MB\r\r\nStep 1/14 : FROM openjdk:8-alpine\n ---> 97bc1352afde\nStep 2/14 : ARG spark_jars=jars\n ---> Using cache\n ---> 43a88b8f293b\nStep 3/14 : ARG img_path=kubernetes/dockerfiles\n ---> Using cache\n ---> 71820d750cef\nStep 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd\n ---> Using cache\n ---> e21c21b62082\nStep 5/14 : COPY ${spark_jars} /opt/spark/jars\n ---> Using cache\n ---> 08ade418da2a\nStep 6/14 : COPY bin /opt/spark/bin\n ---> Using cache\n ---> 8d0cecbce67d\nStep 7/14 : COPY sbin /opt/spark/sbin\n ---> Using cache\n ---> e91d02214f18\nStep 8/14 : COPY conf /opt/spark/conf\n ---> Using cache\n ---> 4f50cdad51f5\nStep 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/\n ---> Using cache\n ---> fbcf4eaede38\nStep 10/14 : COPY examples /opt/spark/examples\n ---> Using cache\n ---> 371e5dd8f1af\nStep 11/14 : COPY data /opt/spark/data\n ---> Using cache\n ---> b86957cd14c8\nStep 12/14 : ENV SPARK_HOME /opt/spark\n ---> Using cache\n ---> acb3d08effe3\nStep 13/14 : WORKDIR /opt/spark/work-dir\n ---> Using cache\n ---> d310fac48d35\nStep 14/14 : ENTRYPOINT /opt/entrypoint.sh\n ---> Using cache\n ---> 5a3ff9819ba4\nSuccessfully built 5a3ff9819ba4", 
+        "stdout_lines": [
+            "Sending build context to Docker daemon 256.5 MB", 
+            "", 
+            "Step 1/14 : FROM openjdk:8-alpine", 
+            " ---> 97bc1352afde", 
+            "Step 2/14 : ARG spark_jars=jars", 
+            " ---> Using cache", 
+            " ---> 43a88b8f293b", 
+            "Step 3/14 : ARG img_path=kubernetes/dockerfiles", 
+            " ---> Using cache", 
+            " ---> 71820d750cef", 
+            "Step 4/14 : RUN set -ex &&     apk upgrade --no-cache &&     apk add --no-cache bash tini libc6-compat &&     mkdir -p /opt/spark &&     mkdir -p /opt/spark/work-dir     touch /opt/spark/RELEASE &&     rm /bin/sh &&     ln -sv /bin/bash /bin/sh &&     chgrp root /etc/passwd && chmod ug+rw /etc/passwd", 
+            " ---> Using cache", 
+            " ---> e21c21b62082", 
+            "Step 5/14 : COPY ${spark_jars} /opt/spark/jars", 
+            " ---> Using cache", 
+            " ---> 08ade418da2a", 
+            "Step 6/14 : COPY bin /opt/spark/bin", 
+            " ---> Using cache", 
+            " ---> 8d0cecbce67d", 
+            "Step 7/14 : COPY sbin /opt/spark/sbin", 
+            " ---> Using cache", 
+            " ---> e91d02214f18", 
+            "Step 8/14 : COPY conf /opt/spark/conf", 
+            " ---> Using cache", 
+            " ---> 4f50cdad51f5", 
+            "Step 9/14 : COPY ${img_path}/spark/entrypoint.sh /opt/", 
+            " ---> Using cache", 
+            " ---> fbcf4eaede38", 
+            "Step 10/14 : COPY examples /opt/spark/examples", 
+            " ---> Using cache", 
+            " ---> 371e5dd8f1af", 
+            "Step 11/14 : COPY data /opt/spark/data", 
+            " ---> Using cache", 
+            " ---> b86957cd14c8", 
+            "Step 12/14 : ENV SPARK_HOME /opt/spark", 
+            " ---> Using cache", 
+            " ---> acb3d08effe3", 
+            "Step 13/14 : WORKDIR /opt/spark/work-dir", 
+            " ---> Using cache", 
+            " ---> d310fac48d35", 
+            "Step 14/14 : ENTRYPOINT /opt/entrypoint.sh", 
+            " ---> Using cache", 
+            " ---> 5a3ff9819ba4", 
+            "Successfully built 5a3ff9819ba4"
+        ]
+    }
+}
+2018-12-05 17:44:08,578 p=29051 u=yungshun |  TASK [Log into DockerHub] ******************************************************
+2018-12-05 17:44:09,226 p=29051 u=yungshun |  ok: [10.236.1.1]
+2018-12-05 17:44:09,232 p=29051 u=yungshun |  TASK [Push Spark Docker image using docker-image-tool.sh] **********************
+2018-12-05 17:44:16,569 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:16,574 p=29051 u=yungshun |  TASK [Debug push_spark_image] **************************************************
+2018-12-05 17:44:16,658 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "push_spark_image": {
+        "changed": true, 
+        "cmd": "./bin/docker-image-tool.sh -r yungshun317 -t latest push", 
+        "delta": "0:00:06.915042", 
+        "end": "2018-12-05 17:44:16.521188", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:09.606146", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "The push refers to a repository [docker.io/yungshun317/spark]\n0017145f5960: Preparing\n55cc5be1acc1: Preparing\n4d6f27f7b604: Preparing\n41492c9f788d: Preparing\nf3ad8043c52a: Preparing\n7a2253586749: Preparing\n7ce64cc46444: Preparing\n320bbd3a0bd1: Preparing\ned6f0bd39121: Preparing\n0c3170905795: Preparing\ndf64d3292fd6: Preparing\ned6f0bd39121: Waiting\n0c3170905795: Waiting\n7ce64cc46444: Waiting\n320bbd3a0bd1: Waiting\ndf64d3292fd6: Waiting\n0017145f5960: Layer already exists\n55cc5be1acc1: Layer already exists\n41492c9f788d: Layer already exists\nf3ad8043c52a: Layer already exists\n4d6f27f7b604: Layer already exists\ned6f0bd39121: Layer already exists\n7ce64cc46444: Layer already exists\n7a2253586749: Layer already exists\n320bbd3a0bd1: Layer already exists\n0c3170905795: Layer already exists\ndf64d3292fd6: Layer already exists\nlatest: digest: sha256:5e7c40f503b0383b0324dbab759f05966294356decaeecf55909e3e50256a6e9 size: 2624", 
+        "stdout_lines": [
+            "The push refers to a repository [docker.io/yungshun317/spark]", 
+            "0017145f5960: Preparing", 
+            "55cc5be1acc1: Preparing", 
+            "4d6f27f7b604: Preparing", 
+            "41492c9f788d: Preparing", 
+            "f3ad8043c52a: Preparing", 
+            "7a2253586749: Preparing", 
+            "7ce64cc46444: Preparing", 
+            "320bbd3a0bd1: Preparing", 
+            "ed6f0bd39121: Preparing", 
+            "0c3170905795: Preparing", 
+            "df64d3292fd6: Preparing", 
+            "ed6f0bd39121: Waiting", 
+            "0c3170905795: Waiting", 
+            "7ce64cc46444: Waiting", 
+            "320bbd3a0bd1: Waiting", 
+            "df64d3292fd6: Waiting", 
+            "0017145f5960: Layer already exists", 
+            "55cc5be1acc1: Layer already exists", 
+            "41492c9f788d: Layer already exists", 
+            "f3ad8043c52a: Layer already exists", 
+            "4d6f27f7b604: Layer already exists", 
+            "ed6f0bd39121: Layer already exists", 
+            "7ce64cc46444: Layer already exists", 
+            "7a2253586749: Layer already exists", 
+            "320bbd3a0bd1: Layer already exists", 
+            "0c3170905795: Layer already exists", 
+            "df64d3292fd6: Layer already exists", 
+            "latest: digest: sha256:5e7c40f503b0383b0324dbab759f05966294356decaeecf55909e3e50256a6e9 size: 2624"
+        ]
+    }
+}
+2018-12-05 17:44:16,664 p=29051 u=yungshun |  TASK [Create an nginx deployment] **********************************************
+2018-12-05 17:44:19,281 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:19,285 p=29051 u=yungshun |  TASK [Debug create_nginx] ******************************************************
+2018-12-05 17:44:19,367 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "create_nginx": {
+        "changed": true, 
+        "cmd": "kubectl create -f nginx.yml", 
+        "delta": "0:00:02.196479", 
+        "end": "2018-12-05 17:44:19.236106", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:17.039627", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/nginx-deployment created", 
+        "stdout_lines": [
+            "deployment.extensions/nginx-deployment created"
+        ]
+    }
+}
+2018-12-05 17:44:19,373 p=29051 u=yungshun |  TASK [Create a spark-master deployment] ****************************************
+2018-12-05 17:44:22,033 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:22,040 p=29051 u=yungshun |  TASK [Debug create_spark_master] ***********************************************
+2018-12-05 17:44:22,123 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master.yml", 
+        "delta": "0:00:02.238718", 
+        "end": "2018-12-05 17:44:21.985952", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:19.747234", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-master created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:44:22,129 p=29051 u=yungshun |  TASK [Create a spark-master service] *******************************************
+2018-12-05 17:44:24,815 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:24,821 p=29051 u=yungshun |  TASK [Debug create_spark_master_svc] *******************************************
+2018-12-05 17:44:24,905 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_master_svc": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-master-service.yml", 
+        "delta": "0:00:02.266494", 
+        "end": "2018-12-05 17:44:24.769487", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:22.502993", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "service/spark-master created", 
+        "stdout_lines": [
+            "service/spark-master created"
+        ]
+    }
+}
+2018-12-05 17:44:24,910 p=29051 u=yungshun |  TASK [Create a spark-worker deployment] ****************************************
+2018-12-05 17:44:27,568 p=29051 u=yungshun |  changed: [10.236.1.1]
+2018-12-05 17:44:27,573 p=29051 u=yungshun |  TASK [Debug create_spark_worker] ***********************************************
+2018-12-05 17:44:27,663 p=29051 u=yungshun |  ok: [10.236.1.1] => {
+    "create_spark_worker": {
+        "changed": true, 
+        "cmd": "kubectl create -f spark-worker.yml", 
+        "delta": "0:00:02.214222", 
+        "end": "2018-12-05 17:44:27.523259", 
+        "failed": false, 
+        "rc": 0, 
+        "start": "2018-12-05 17:44:25.309037", 
+        "stderr": "", 
+        "stderr_lines": [], 
+        "stdout": "deployment.extensions/spark-worker created", 
+        "stdout_lines": [
+            "deployment.extensions/spark-worker created"
+        ]
+    }
+}
+2018-12-05 17:44:27,665 p=29051 u=yungshun |  PLAY RECAP *********************************************************************
+2018-12-05 17:44:27,665 p=29051 u=yungshun |  10.236.1.1                 : ok=22   changed=9    unreachable=0    failed=0   

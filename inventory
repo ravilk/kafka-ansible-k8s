@@ -1,9 +1,9 @@
 [master]
-10.0.0.10
+ansible_host=10.0.0.10
 
 [minion]
-10.0.0.11
-10.0.0.12
+ansible_host=10.0.0.11
+ansible_host=10.0.0.12
 
 [vagrant:children]
 master
@@ -14,3 +14,5 @@ ansible_connection = ssh
 ansible_user = vagrant
 ansible_ssh_pass = vagrant
 
+[defaults]
+host_key_checking = false
